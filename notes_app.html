@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>笔记应用</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-4">
+    <div class="container mx-auto max-w-2xl">
+        <div class="mb-4">
+            <input id="noteInput" type="text" placeholder="输入你的笔记内容..." class="w-full p-3 rounded-xl border border-gray-300 shadow-sm focus:ring focus:ring-blue-200" />
+            <button onclick="submitNote()" class="mt-2 w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-xl">添加笔记</button>
+        </div>
+
+        <div id="notesContainer" class="space-y-4"></div>
+
+        <div class="mt-6 flex justify-center">
+            <button onclick="clearNotes()" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full">清除所有笔记</button>
+        </div>
+    </div>
+
+    <script>
+        function submitNote() {
+            const noteInput = document.getElementById("noteInput");
+            const notesContainer = document.getElementById("notesContainer");
+
+            if (noteInput.value.trim() !== "") {
+                const newNote = document.createElement("div");
+                newNote.classList.add("bg-gray-100", "p-4", "rounded-xl", "shadow-sm");
+                newNote.textContent = noteInput.value;
+                notesContainer.appendChild(newNote);
+
+                // 清空输入框
+                noteInput.value = "";
+            } else {
+                alert("请输入笔记内容！");
+            }
+        }
+
+        function clearNotes() {
+            const notesContainer = document.getElementById("notesContainer");
+            notesContainer.innerHTML = "";
+        }
+    </script>
+</body>
+</html>
